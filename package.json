@@ -1,8 +1,11 @@
 {
-  "name": "protoc-gen-walle",
+  "name": "@uki/protoc-gen-walle",
   "version": "1.0.0",
   "description": "自动生成ts的工具",
   "main": "index.js",
+  "bin":{
+    "protoc-gen-walle":"index.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
