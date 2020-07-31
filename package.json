@@ -1,0 +1,25 @@
+{
+  "name": "protoc-gen-walle",
+  "version": "1.0.0",
+  "description": "自动生成ts的工具",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gitforxuyang/protoc-gen-walle.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gitforxuyang/protoc-gen-walle/issues"
+  },
+  "homepage": "https://github.com/Gitforxuyang/protoc-gen-walle#readme",
+  "dependencies": {
+    "ejs": "^3.1.3",
+    "google-protobuf": "^4.0.0-rc.2",
+    "lodash": "^4.17.19",
+    "protoc-plugin": "0.0.6"
+  }
+}

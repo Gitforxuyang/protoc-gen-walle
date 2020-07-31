@@ -1,0 +1,418 @@
+syntax = "proto3";
+package proto;
+
+import "google/api/annotations.proto";
+
+message Account {
+    string token = 1;
+    int32 expire = 2;
+    int32 issuedAt = 3;
+    string accid = 4;
+}
+message Risk {
+    int32 cheatLevel = 1;
+}
+message Block {
+    int32 status = 1;
+    int32 relieveTime = 2;
+}
+message Forbid {
+    int32 status = 1;
+    int32 relieveTime = 2;
+    int32 count = 3;
+}
+message Report {
+    int32 count = 1;
+    int32 totalReportCount = 2;
+}
+message Device {
+    string ukiDevice = 1;
+    string phoneType = 2;
+    string phoneBrand = 3;
+    string os = 4;
+}
+message App {
+    string version = 1;
+    int32 channel = 2;
+}
+message Topic {
+    int32 createdAt = 1;
+    string id = 2;
+}
+message Level {
+    int32 level = 1;
+    int32 exp = 2;
+}
+message Logout {
+    int32 status = 1;
+    int32 createdAt = 2;
+}
+
+
+message User {
+    string id = 1;
+    string name = 2;
+    string ukiId = 3;
+    string password = 4;
+    int32 sex = 5;
+    string phone = 6;
+    string birth = 7;
+    string starSign = 8;
+    int32 registeredAt = 9;
+    string registeredCity = 10;
+    int32 wantSex = 11;
+    string signature = 12;
+    int32 recentLoginAt = 13;
+    string recentLoginType = 14;
+    string city = 15;
+    int32 robot = 16;
+    repeated double position = 17;
+    Account account = 18;
+    Risk risk = 19;
+    string avatarUrl = 20;
+    Block block = 21;
+    Forbid forbid = 22;
+    int32 ucoin = 23;
+    Report report = 24;
+    Device device = 25;
+    App app = 26;
+    repeated Topic topic = 27;
+    int32 diamond = 28;
+    int32 giftAmount = 29;
+    int32 diamondAmount = 30;
+    Level level = 31;
+    int32 medalCount = 32;
+    int32 freeze = 33;
+    string secretCode = 34;
+    Logout logout = 35;
+}
+
+message GetUserReq {
+   repeated string uid = 1;
+   repeated string ukiId = 2;
+   repeated string userId = 3;
+   repeated string phone = 4;
+}
+
+message GetUserResp {
+    repeated User users = 1;
+}
+
+message EmptyResp{
+}
+
+message Nil{
+}
+message PostIdentityReq{
+    string name=1;
+    string manageId=2;
+}
+
+message GetIdentityReq{
+    string name=1;
+    uint32 startTime=2;
+    uint32 endTime=3;
+    int32 page=4;
+    int32 size=5;
+}
+
+message IdentityEntity{
+    string id=1;
+    string name=2;
+    int32 count=3;
+    int32 level=4;
+    uint32 createdAt=5;
+    uint32 updatedAt=6;
+}
+message GetIdentityResp{
+    repeated IdentityEntity items=1;
+    int32 total=2;
+}
+message PutIdentityReq{
+    string id=1;
+    string name=2;
+    string manageId=3;
+}
+message DelIdentityReq{
+    string id=1;
+    string manageId=2;
+}
+message IdentitySort{
+   string id=1;
+   int32 level=2;
+}
+message PutIdentitySortReq{
+    repeated IdentitySort items=1;
+    string manageId=2;
+}
+message PostAuthUserItem{
+    string ukiId=1;
+}
+message PostAuthUserReq{
+   string identityId=1;
+   repeated PostAuthUserItem items=2;
+   string manageId=3;
+}
+message GetAuthUserReq{
+    string identityName=1;
+    uint32 startTime=2;
+    uint32 endTime=3;
+    int32 page=4;
+    int32 size=5;
+    string ukiId=6;
+}
+message AuthUserItem {
+    string ukiId=2;
+    string uid=3;
+    string name=4;
+    repeated IdentityEntity identify=5;
+    uint32 createdAt=6;
+}
+message GetAuthUserResp{
+    repeated AuthUserItem items=1;
+    int32 total=2;
+}
+message DelAuthUserReq{
+    string uid=1;
+    repeated string ids =2;
+    string manageId =3;
+}
+message PostUserHandleRecordReq{
+    string userId=1;
+    int32 type=2;
+    string content=3;
+    string from=4;
+    string manageId=5;
+}
+message GetUserHandleRecordReq{
+    string userId=1;
+    repeated int32 type=2;
+}
+message UserHandleRecord{
+    int32 type=1;
+    string content=2;
+    uint32 createdAt=3;
+    string createdBy=4;
+    string from=5;
+}
+message GetUserHandleRecordResp{
+    repeated UserHandleRecord records=1;
+}
+message GetUsersReq{
+    repeated string userIds=1;
+    repeated string ukiIds=2;
+    repeated string phones=3;
+}
+message CmsUser{
+    string id=1;
+    string name=2;
+    string ukiId=3;
+    int32 sex=4;
+    string phone=5;
+    string signature=6;
+    string birth=7;
+    uint32 registeredAt=8;
+    string city=9;
+    string avatarUrl=10;
+    int32 partyScore=11; //派对分值
+    uint32 partyForbidTime=12; //派对禁播时间
+    int32 partyIdentity =13;//1-普通用户 2-主播
+    int32 forbid=14;
+    int32 forbidCount=15;
+    int32 band=16;
+    int32 level=17;
+    string uid=18;
+}
+message GetUsersResp{
+    repeated CmsUser items =1;
+}
+message PutPartyStateReq{
+    int32 change=1;
+    uint32 forbidTime=2;
+    string userId=3;
+    string manegeId=4;
+    string page=5;//来源页面
+}
+message PutUserForbidReq{
+    string userId=1;
+    string page=2;
+    string handler=3;
+    int32 from=4;//来源  1-风控 2-业务
+    int32 custom=5;//是否是自定义禁言 1-是 0-不是  自定义禁言不遵守三次累加的逻辑。也不累加禁言次数。但是需要传禁言时间
+    int32 forbidDuration=6;//当是自定义禁言时需要传递禁言时间
+}
+message PutUserBandReq{
+    string userId=1;
+    string page=2;
+    string handler=3;
+    int32 from=4;//是否是风控处理 1-是 0-不是
+}
+message PutUserLevelReq{
+    string userId=1;
+    string page=2;
+    string handler=3;
+    int32 from=4;//是否是风控处理 1-是 0-不是
+}
+//重置昵称个签
+message PutUserInfoReq{
+    string userId=1;
+    bool name=2;
+    bool sign=3;
+    string page=4;
+    string handler=5;
+}
+message GetUserOneReq{
+    string uid=1;
+    string userId=2;
+    string ukiId=3;
+    string phone=4;
+}
+message GetUnionMemberReq {
+    string uid = 1;
+}
+message GetUnionMembersReq {
+    repeated string uids = 1;
+}
+message OneUnionMember {
+    string uid = 1;
+    int32 type = 2;
+    int32 unionMemberType = 3;
+    Union union = 4;
+    message Union {
+        string id = 1;
+        int32 type = 2;
+    }
+}
+message GetUnionMembersResp {
+    repeated OneUnionMember items =1;
+}
+message TaskReq{
+    int32 id=1;
+}
+message TaskResp{
+    string msg=1;
+}
+//获取所有主播认证类型
+message SelectIdentityResp{
+    message Content{
+        int32 type=1;
+        string text=2;
+    }
+    repeated Content items=1;
+}
+service CmsuserService {
+
+    rpc GetUserInfo (GetUserReq) returns (GetUserResp) {
+        option (google.api.http) = {
+          get: "/user/info"
+//          body: "*"
+       };
+    }
+    rpc PostIdentity (PostIdentityReq) returns (EmptyResp){
+
+    }
+    rpc GetIdentity (GetIdentityReq) returns (GetIdentityResp){
+
+    }
+    rpc PutIdentity (PutIdentityReq) returns (EmptyResp){
+
+    }
+    rpc DelIdentity (DelIdentityReq) returns (EmptyResp){
+
+    }
+    rpc PutIdentitySort (PutIdentitySortReq) returns (EmptyResp){
+
+    }
+    rpc PostAuthUser (PostAuthUserReq) returns (EmptyResp){
+
+    }
+    rpc GetAuthUser (GetAuthUserReq) returns (GetAuthUserResp){
+
+    }
+    rpc DelAuthUser (DelAuthUserReq) returns (EmptyResp){
+
+    }
+    rpc PostUserHandleRecord (PostUserHandleRecordReq) returns (EmptyResp){
+
+    }
+    rpc GetUserHandleRecord (GetUserHandleRecordReq) returns (GetUserHandleRecordResp){
+
+    }
+    //获取多个cmsUser属性
+    rpc GetUsers (GetUsersReq) returns (GetUsersResp) {
+        option (google.api.http) = {
+          post: "/v1/users"
+          body: "*"
+       };
+    }
+    //获取单个cmsUser属性
+    rpc GetUserOne (GetUserOneReq) returns (CmsUser) {
+        option (google.api.http) = {
+          post: "/v1/user"
+          body: "*"
+       };
+    }
+
+    rpc PutPartyState (PutPartyStateReq) returns (EmptyResp){
+
+    }
+
+    rpc PutUserForbid (PutUserForbidReq) returns (EmptyResp){
+        option (google.api.http) = {
+          post: "/v0/user/forbid"
+          body: "*"
+       };
+    }
+    rpc PutUserBand (PutUserBandReq) returns (EmptyResp){
+        option (google.api.http) = {
+          post: "/v0/user/band"
+          body: "*"
+       };
+    }
+    rpc PutUserLevel (PutUserLevelReq) returns (EmptyResp){
+        option (google.api.http) = {
+          post: "/v0/user/level"
+          body: "*"
+       };
+    }
+    rpc PutUserInfo (PutUserInfoReq) returns (EmptyResp){
+
+    }
+    rpc PutUserUnForbid (PutUserForbidReq) returns (EmptyResp){
+        option (google.api.http) = {
+          post: "/v0/user/unforbid"
+          body: "*"
+       };
+    }
+    rpc PutUserUnBand (PutUserBandReq) returns (EmptyResp){
+        option (google.api.http) = {
+          post: "/v0/user/unband"
+          body: "*"
+       };
+    }
+    rpc PutUserUnLevel (PutUserLevelReq) returns (EmptyResp){
+        option (google.api.http) = {
+          post: "/v0/user/unlevel"
+          body: "*"
+       };
+    }
+    rpc GetUnionMembers(GetUnionMembersReq) returns (GetUnionMembersResp){
+        option (google.api.http) = {
+            post: "/v0/app/union/info"
+            body: "*"
+        };
+    }
+    rpc GetUnionMember(GetUnionMemberReq) returns (OneUnionMember){
+        option (google.api.http) = {
+            get: "/v0/app/union/user"
+//            body: "*"
+        };
+    }
+    rpc Task(TaskReq) returns (TaskResp){
+        option (google.api.http) = {
+            get: "/task/{id}"
+        };
+    }
+    rpc SelectIdentity(Nil) returns (SelectIdentityResp){
+    }
+}

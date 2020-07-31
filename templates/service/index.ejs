@@ -1,0 +1,41 @@
+<%_
+  var { name, pb_package,serviceList } = proto;
+_%>
+/**
+ * 自动生成 请勿修改
+ * <%= new Date().toString()%>
+ */
+
+import { Service } from 'egg'
+import { <%= pb_package %> as <%= fileName %> } from '../../proto/<%= fileName%>'
+
+export default class <%= fileName%>Service extends Service {
+      <%_ for (const service of serviceList){ _%>
+          <%_ const {name:serviceName , methodList}=service _%>
+          <%_ for(const method of methodList){ _%>
+            <%_
+            const   {name:methodName,inputType,outputType}=method
+            var req=inputType.split('.').pop()
+            var resp=outputType.split('.').pop()
+            var lowerMethodArr=methodName.split('')
+            lowerMethodArr[0]=lowerMethodArr[0].toLowerCase()
+            var lowerMethod=lowerMethodArr.join('')
+             _%>
+
+    public async <%=lowerMethod%>(
+        data: <%=fileName%>.I<%=req%>,
+    ): Promise<<%=fileName%>.I<%=resp%>> {
+        const { ctx } = this
+        const result = await ctx.grpcInvoker(
+            '<%=fileName%>',
+            '<%=serviceName%>',
+            '<%=lowerMethod%>',
+            {
+                data,
+            },
+        )
+        return result
+    }
+          <%_}_%>
+      <%_ } _%>  
+}

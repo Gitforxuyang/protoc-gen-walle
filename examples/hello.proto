@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package main;
+
+// import "google/api/annotations.proto";
+// import "google/protobuf/wrappers.proto";
+
+message String {
+    string value = 1;
+    Value v=3;
+}
+message Value{
+    string name=1;
+}
+service HelloService {
+    rpc Hello (String) returns (String){
+      
+    };
+    rpc Ping (String) returns (String){
+      
+    };
+}
