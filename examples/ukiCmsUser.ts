@@ -1,6 +1,6 @@
 /**
  * 自动生成 请勿修改
- * Fri Jul 31 2020 14:26:47 GMT+0800 (GMT+08:00)
+ * Fri Jul 31 2020 14:56:55 GMT+0800 (GMT+08:00)
  */
 
 import { Service } from 'egg'

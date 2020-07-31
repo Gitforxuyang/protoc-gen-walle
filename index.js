@@ -25,7 +25,6 @@ main()
  */
 async function main() {
   const request = await CodeGeneratorRequest().then((r) => r.toObject());
-  // console.log(request.protoFileList[0])
   const parameter = parseParameter(request.parameter);
   const compilerVersion = request.compilerVersion;
 
