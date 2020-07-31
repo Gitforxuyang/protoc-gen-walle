@@ -1,12 +1,14 @@
 /**
  * 自动生成 请勿修改
- * Fri Jul 31 2020 14:56:55 GMT+0800 (GMT+08:00)
+ * Fri Jul 31 2020 15:51:45 GMT+0800 (GMT+08:00)
  */
 
 import { Service } from 'egg'
 import { proto as ukiCmsUser } from '../../proto/ukiCmsUser'
 
-export default class ukiCmsUserService extends Service {
+
+
+export default class UkiCmsUserService extends Service {
 
     public async getUserInfo(
         data: ukiCmsUser.IGetUserReq,

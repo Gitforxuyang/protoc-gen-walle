@@ -9,7 +9,11 @@ _%>
 import { Service } from 'egg'
 import { <%= pb_package %> as <%= fileName %> } from '../../proto/<%= fileName%>'
 
-export default class <%= fileName%>Service extends Service {
+<% var fileNameArr=fileName.split('')
+fileNameArr[0]=fileNameArr[0].toUpperCase()
+var upperFileName=fileNameArr.join('') %>
+
+export default class <%= upperFileName%>Service extends Service {
       <%_ for (const service of serviceList){ _%>
           <%_ const {name:serviceName , methodList}=service _%>
           <%_ for(const method of methodList){ _%>
