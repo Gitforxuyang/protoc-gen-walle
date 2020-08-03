@@ -31,16 +31,14 @@ async function main() {
   const protos = _.filter(request.protoFileList, (p) => {
     return request.fileToGenerateList.indexOf(p.name) !== -1;
   });
-  // console.log(protos)
   const template = await prepareTemplate(parameter.template);
   const TYPE = generateConstantsMap(FieldDescriptorProto.Type);
   const LABEL = generateConstantsMap(FieldDescriptorProto.Label);
   const dependenciesMap = mapDependencies(protos);
   return _.map(protos, (proto) => {
     const name = proto.name.replace(/\.proto$/, `.${parameter.ext}`);
-    // console.log(proto)
+    // console.log(proto.messageTypeList[0].nestedTypeList.length)
     const fileName=proto.name.replace(/\.proto$/,'')
-    // console.log(proto.serviceList[0].methodList[0].inputType.split('.').pop())
     return {
       name,
       content: template({

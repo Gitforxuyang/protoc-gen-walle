@@ -3,14 +3,23 @@ syntax = "proto3";
 package main;
 
 // import "google/api/annotations.proto";
-// import "google/protobuf/wrappers.proto";
+import "google/protobuf/wrappers.proto";
 
 message String {
-    string value = 1;
-    Value v=3;
+    repeated google.protobuf.StringValue value = 1;
+     Value v=3;
+    repeated Content c=4;
+    message Content{
+        repeated string c=3;
+         D d=4;
+        message D{
+             string d=4;
+        }
+    }
 }
 message Value{
-    string name=1;
+     string name=1;
+     string age=2;
 }
 service HelloService {
     rpc Hello (String) returns (String){

@@ -1,0 +1,26 @@
+<%_
+    var {methodList,fileName,serviceName}=proto
+_%>
+<%_ for(const method of methodList){ _%>
+    <%_
+    const   {name:methodName,inputType,outputType}=method
+    var req=inputType.split('.').pop()
+    var resp=outputType.split('.').pop()
+    var lowerMethodArr=methodName.split('')
+    lowerMethodArr[0]=lowerMethodArr[0].toLowerCase()
+    var lowerMethod=lowerMethodArr.join('')
+     _%>
+
+    public async <%=lowerMethod%>(data: <%=fileName%>.I<%=req%>): Promise<<%=fileName%>.I<%=resp%>> {
+        const { ctx } = this
+        const result = await ctx.grpcInvoker(
+            '<%=fileName%>',
+            '<%=serviceName%>',
+            '<%=lowerMethod%>',
+            {
+                data,
+            },
+        )
+        return result
+    } 
+<%_}_%>

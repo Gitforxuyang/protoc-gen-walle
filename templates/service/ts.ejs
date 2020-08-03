@@ -1,0 +1,94 @@
+<%_
+    var {messageTypeList}=proto
+
+    var TS_TYPE = {
+        double: 'number',
+        float: 'number',
+        int64: 'number',
+        uint64: 'number',
+        int32: 'number',
+        fixed64: 'number',
+        fixed32: 'number',
+        bool: 'boolean',
+        string: 'string',
+        group: 'group', // FIXME
+        message: 'message', // will be replaced with other interface name
+        bytes: 'string',
+        uint32: 'number',
+        enum: 'enum', // will be replaced with enum name
+        sfixed32: 'number',
+        sfixed64: 'number',
+        sint32: 'number',
+        sint64: 'number',
+      };
+      var TS_TYPE_NAME={
+          '.google.protobuf.StringValue':1,
+          '.google.protobuf.DoubleValue':2,
+          '.google.protobuf.FloatValue':2,
+          '.google.protobuf.Int64Value':2,
+          '.google.protobuf.UInt64Value':2,
+          '.google.protobuf.Int32Value':2,
+          '.google.protobuf.UInt32Value':2,
+          '.google.protobuf.BoolValue':3,
+      }
+      buildMessage([],messageTypeList)
+_%>
+<%_
+    function buildMessage(nest,messageList){
+        for (const message of messageList){
+            if(message.nestedTypeList.length>0){
+                buildMessage([...nest,message.name],message.nestedTypeList)
+            }
+            buildField([...nest,message.name],message.fieldList)
+        }
+    }
+_%>
+<%_ 
+      function buildField(nest,fieldList){
+_%>
+export interface <%=nest.join('_')%>{
+<%_ for (const field of fieldList){_%>
+    <%_ 
+    var name=field.name
+    var t=''
+    var {label,typeName,type}=field
+    if (typeName){
+        t=TS_TYPE_NAME[typeName]
+    }else{
+        t=TS_TYPE[TYPE[type]]
+    }
+    var isArr= LABEL[label] === 'repeated'?1:0
+    _%>
+    <%-name-%>:<%_ if(t==1&&isArr==1){ %> {value:string}[]
+    <%_}_%>
+    <%_ if(t==1&&isArr==0){ %> ({value:string}|null)
+    <%_}_%>
+    <%_ if(t==2&&isArr==1) { %> {value:number}[]
+    <%_}_%>
+    <%_ if(t==2&&isArr==0) { %> ({value:number}|null)
+    <%_}_%>
+    <%_ if(t==3&&isArr==1) { %> {value:boolean}[]
+    <%_}_%>
+    <%_ if(t==3&&isArr==0) { %> ({value:boolean}|null)
+    <%_}_%>
+    <%_ if(t==undefined&&isArr==0){
+        var typeArr=typeName.split('.')
+        typeArr.shift()
+        typeArr.shift()
+        %> (<%=typeArr.join('_')%>|null)
+    <%_}_%>
+    <%_ if(t==undefined&&isArr==1){
+        var typeArr=typeName.split('.')
+        typeArr.shift()
+        typeArr.shift()
+        %> <%=typeArr.join('_')%>[]
+    <%_}_%>
+    <%_if(['number','string','boolean'].includes(t)&&isArr==0){%> <%-t-%>
+
+    <%_}_%>
+    <%_if(['number','string','boolean'].includes(t)&&isArr==1){%> <%-t-%>[]
+    <%_}_%>
+<%_}_%>
+}
+ <%_ }
+_%>
