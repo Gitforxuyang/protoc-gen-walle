@@ -1,10 +1,9 @@
 /**
  * 自动生成 请勿修改
- * Mon Aug 03 2020 11:24:38 GMT+0800 (GMT+08:00)
+ * Mon Aug 03 2020 11:27:22 GMT+0800 (GMT+08:00)
  */
 
 import { Service } from 'egg'
-import { proto as ukiCmsUser } from '../../proto/ukiCmsUser'
 export interface Account{
     token: string
     expire: number
@@ -295,7 +294,7 @@ export interface SelectIdentityResp{
 
 export default class UkiCmsUserService extends Service {
                 
-    public async getUserInfo(data: ukiCmsUser.IGetUserReq): Promise<ukiCmsUser.IGetUserResp> {
+    public async getUserInfo(data: GetUserReq): Promise<GetUserResp> {
         const { ctx } = this
         const result = await ctx.grpcInvoker(
             'ukiCmsUser',
@@ -308,7 +307,7 @@ export default class UkiCmsUserService extends Service {
         return result
     } 
 
-    public async postIdentity(data: ukiCmsUser.IPostIdentityReq): Promise<ukiCmsUser.IEmptyResp> {
+    public async postIdentity(data: PostIdentityReq): Promise<EmptyResp> {
         const { ctx } = this
         const result = await ctx.grpcInvoker(
             'ukiCmsUser',
@@ -321,7 +320,7 @@ export default class UkiCmsUserService extends Service {
         return result
     } 
 
-    public async getIdentity(data: ukiCmsUser.IGetIdentityReq): Promise<ukiCmsUser.IGetIdentityResp> {
+    public async getIdentity(data: GetIdentityReq): Promise<GetIdentityResp> {
         const { ctx } = this
         const result = await ctx.grpcInvoker(
             'ukiCmsUser',
@@ -334,7 +333,7 @@ export default class UkiCmsUserService extends Service {
         return result
     } 
 
-    public async putIdentity(data: ukiCmsUser.IPutIdentityReq): Promise<ukiCmsUser.IEmptyResp> {
+    public async putIdentity(data: PutIdentityReq): Promise<EmptyResp> {
         const { ctx } = this
         const result = await ctx.grpcInvoker(
             'ukiCmsUser',
@@ -347,7 +346,7 @@ export default class UkiCmsUserService extends Service {
         return result
     } 
 
-    public async delIdentity(data: ukiCmsUser.IDelIdentityReq): Promise<ukiCmsUser.IEmptyResp> {
+    public async delIdentity(data: DelIdentityReq): Promise<EmptyResp> {
         const { ctx } = this
         const result = await ctx.grpcInvoker(
             'ukiCmsUser',
@@ -360,7 +359,7 @@ export default class UkiCmsUserService extends Service {
         return result
     } 
 
-    public async putIdentitySort(data: ukiCmsUser.IPutIdentitySortReq): Promise<ukiCmsUser.IEmptyResp> {
+    public async putIdentitySort(data: PutIdentitySortReq): Promise<EmptyResp> {
         const { ctx } = this
         const result = await ctx.grpcInvoker(
             'ukiCmsUser',
@@ -373,7 +372,7 @@ export default class UkiCmsUserService extends Service {
         return result
     } 
 
-    public async postAuthUser(data: ukiCmsUser.IPostAuthUserReq): Promise<ukiCmsUser.IEmptyResp> {
+    public async postAuthUser(data: PostAuthUserReq): Promise<EmptyResp> {
         const { ctx } = this
         const result = await ctx.grpcInvoker(
             'ukiCmsUser',
@@ -386,7 +385,7 @@ export default class UkiCmsUserService extends Service {
         return result
     } 
 
-    public async getAuthUser(data: ukiCmsUser.IGetAuthUserReq): Promise<ukiCmsUser.IGetAuthUserResp> {
+    public async getAuthUser(data: GetAuthUserReq): Promise<GetAuthUserResp> {
         const { ctx } = this
         const result = await ctx.grpcInvoker(
             'ukiCmsUser',
@@ -399,7 +398,7 @@ export default class UkiCmsUserService extends Service {
         return result
     } 
 
-    public async delAuthUser(data: ukiCmsUser.IDelAuthUserReq): Promise<ukiCmsUser.IEmptyResp> {
+    public async delAuthUser(data: DelAuthUserReq): Promise<EmptyResp> {
         const { ctx } = this
         const result = await ctx.grpcInvoker(
             'ukiCmsUser',
@@ -412,7 +411,7 @@ export default class UkiCmsUserService extends Service {
         return result
     } 
 
-    public async postUserHandleRecord(data: ukiCmsUser.IPostUserHandleRecordReq): Promise<ukiCmsUser.IEmptyResp> {
+    public async postUserHandleRecord(data: PostUserHandleRecordReq): Promise<EmptyResp> {
         const { ctx } = this
         const result = await ctx.grpcInvoker(
             'ukiCmsUser',
@@ -425,7 +424,7 @@ export default class UkiCmsUserService extends Service {
         return result
     } 
 
-    public async getUserHandleRecord(data: ukiCmsUser.IGetUserHandleRecordReq): Promise<ukiCmsUser.IGetUserHandleRecordResp> {
+    public async getUserHandleRecord(data: GetUserHandleRecordReq): Promise<GetUserHandleRecordResp> {
         const { ctx } = this
         const result = await ctx.grpcInvoker(
             'ukiCmsUser',
@@ -438,7 +437,7 @@ export default class UkiCmsUserService extends Service {
         return result
     } 
 
-    public async getUsers(data: ukiCmsUser.IGetUsersReq): Promise<ukiCmsUser.IGetUsersResp> {
+    public async getUsers(data: GetUsersReq): Promise<GetUsersResp> {
         const { ctx } = this
         const result = await ctx.grpcInvoker(
             'ukiCmsUser',
@@ -451,7 +450,7 @@ export default class UkiCmsUserService extends Service {
         return result
     } 
 
-    public async getUserOne(data: ukiCmsUser.IGetUserOneReq): Promise<ukiCmsUser.ICmsUser> {
+    public async getUserOne(data: GetUserOneReq): Promise<CmsUser> {
         const { ctx } = this
         const result = await ctx.grpcInvoker(
             'ukiCmsUser',
@@ -464,7 +463,7 @@ export default class UkiCmsUserService extends Service {
         return result
     } 
 
-    public async putPartyState(data: ukiCmsUser.IPutPartyStateReq): Promise<ukiCmsUser.IEmptyResp> {
+    public async putPartyState(data: PutPartyStateReq): Promise<EmptyResp> {
         const { ctx } = this
         const result = await ctx.grpcInvoker(
             'ukiCmsUser',
@@ -477,7 +476,7 @@ export default class UkiCmsUserService extends Service {
         return result
     } 
 
-    public async putUserForbid(data: ukiCmsUser.IPutUserForbidReq): Promise<ukiCmsUser.IEmptyResp> {
+    public async putUserForbid(data: PutUserForbidReq): Promise<EmptyResp> {
         const { ctx } = this
         const result = await ctx.grpcInvoker(
             'ukiCmsUser',
@@ -490,7 +489,7 @@ export default class UkiCmsUserService extends Service {
         return result
     } 
 
-    public async putUserBand(data: ukiCmsUser.IPutUserBandReq): Promise<ukiCmsUser.IEmptyResp> {
+    public async putUserBand(data: PutUserBandReq): Promise<EmptyResp> {
         const { ctx } = this
         const result = await ctx.grpcInvoker(
             'ukiCmsUser',
@@ -503,7 +502,7 @@ export default class UkiCmsUserService extends Service {
         return result
     } 
 
-    public async putUserLevel(data: ukiCmsUser.IPutUserLevelReq): Promise<ukiCmsUser.IEmptyResp> {
+    public async putUserLevel(data: PutUserLevelReq): Promise<EmptyResp> {
         const { ctx } = this
         const result = await ctx.grpcInvoker(
             'ukiCmsUser',
@@ -516,7 +515,7 @@ export default class UkiCmsUserService extends Service {
         return result
     } 
 
-    public async putUserInfo(data: ukiCmsUser.IPutUserInfoReq): Promise<ukiCmsUser.IEmptyResp> {
+    public async putUserInfo(data: PutUserInfoReq): Promise<EmptyResp> {
         const { ctx } = this
         const result = await ctx.grpcInvoker(
             'ukiCmsUser',
@@ -529,7 +528,7 @@ export default class UkiCmsUserService extends Service {
         return result
     } 
 
-    public async putUserUnForbid(data: ukiCmsUser.IPutUserForbidReq): Promise<ukiCmsUser.IEmptyResp> {
+    public async putUserUnForbid(data: PutUserForbidReq): Promise<EmptyResp> {
         const { ctx } = this
         const result = await ctx.grpcInvoker(
             'ukiCmsUser',
@@ -542,7 +541,7 @@ export default class UkiCmsUserService extends Service {
         return result
     } 
 
-    public async putUserUnBand(data: ukiCmsUser.IPutUserBandReq): Promise<ukiCmsUser.IEmptyResp> {
+    public async putUserUnBand(data: PutUserBandReq): Promise<EmptyResp> {
         const { ctx } = this
         const result = await ctx.grpcInvoker(
             'ukiCmsUser',
@@ -555,7 +554,7 @@ export default class UkiCmsUserService extends Service {
         return result
     } 
 
-    public async putUserUnLevel(data: ukiCmsUser.IPutUserLevelReq): Promise<ukiCmsUser.IEmptyResp> {
+    public async putUserUnLevel(data: PutUserLevelReq): Promise<EmptyResp> {
         const { ctx } = this
         const result = await ctx.grpcInvoker(
             'ukiCmsUser',
@@ -568,7 +567,7 @@ export default class UkiCmsUserService extends Service {
         return result
     } 
 
-    public async getUnionMembers(data: ukiCmsUser.IGetUnionMembersReq): Promise<ukiCmsUser.IGetUnionMembersResp> {
+    public async getUnionMembers(data: GetUnionMembersReq): Promise<GetUnionMembersResp> {
         const { ctx } = this
         const result = await ctx.grpcInvoker(
             'ukiCmsUser',
@@ -581,7 +580,7 @@ export default class UkiCmsUserService extends Service {
         return result
     } 
 
-    public async getUnionMember(data: ukiCmsUser.IGetUnionMemberReq): Promise<ukiCmsUser.IOneUnionMember> {
+    public async getUnionMember(data: GetUnionMemberReq): Promise<OneUnionMember> {
         const { ctx } = this
         const result = await ctx.grpcInvoker(
             'ukiCmsUser',
@@ -594,7 +593,7 @@ export default class UkiCmsUserService extends Service {
         return result
     } 
 
-    public async task(data: ukiCmsUser.ITaskReq): Promise<ukiCmsUser.ITaskResp> {
+    public async task(data: TaskReq): Promise<TaskResp> {
         const { ctx } = this
         const result = await ctx.grpcInvoker(
             'ukiCmsUser',
@@ -607,7 +606,7 @@ export default class UkiCmsUserService extends Service {
         return result
     } 
 
-    public async selectIdentity(data: ukiCmsUser.INil): Promise<ukiCmsUser.ISelectIdentityResp> {
+    public async selectIdentity(data: Nil): Promise<SelectIdentityResp> {
         const { ctx } = this
         const result = await ctx.grpcInvoker(
             'ukiCmsUser',

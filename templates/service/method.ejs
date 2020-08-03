@@ -11,7 +11,7 @@ _%>
     var lowerMethod=lowerMethodArr.join('')
      _%>
 
-    public async <%=lowerMethod%>(data: <%=fileName%>.I<%=req%>): Promise<<%=fileName%>.I<%=resp%>> {
+    public async <%=lowerMethod%>(data: <%=req%>): Promise<<%=resp%>> {
         const { ctx } = this
         const result = await ctx.grpcInvoker(
             '<%=fileName%>',
