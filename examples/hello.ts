@@ -1,6 +1,7 @@
 /**
- * 自动生成 请勿修改
- * Mon Aug 03 2020 11:30:19 GMT+0800 (GMT+08:00)
+ * build from examples/hello.proto
+ * protoc-gen-walle plugin 自动生成 请勿修改
+ * Mon Aug 03 2020 11:46:59 GMT+0800 (GMT+08:00)
  */
 
 import { Service } from 'egg'
@@ -21,12 +22,12 @@ export interface Value{
     age: string
 }
 
-export default class HelloService extends Service {
+export default class Examples/helloService extends Service {
                 
     public async hello(data: String): Promise<String> {
         const { ctx } = this
         const result = await ctx.grpcInvoker(
-            'hello',
+            'examples/hello',
             'HelloService',
             'hello',
             {
@@ -39,7 +40,7 @@ export default class HelloService extends Service {
     public async ping(data: String): Promise<String> {
         const { ctx } = this
         const result = await ctx.grpcInvoker(
-            'hello',
+            'examples/hello',
             'HelloService',
             'ping',
             {
